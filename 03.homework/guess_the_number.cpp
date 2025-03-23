@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
 
 	} while(true);
 
-	// Save the score
+	// Сохраняем результат в файл
 	// Открываем файл для записи и чтения
 	std::fstream io_file{filename, std::ios_base::in | std::ios_base::out | std::fstream::app};
 	// Записываем в конец файла
