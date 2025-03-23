@@ -17,6 +17,8 @@ int print_arguments(int argc, char** argv) {
 		std::cout << "argv[1] = " << argv[1] << std::endl;
 
 		std::string arg1_value{ argv[1] };
+
+		
 		
         if (arg1_value == "-parameter") {
 			std::cout << "-parameter argument was detected!" << std::endl;

@@ -6,21 +6,46 @@
 
 
 int main(int argc, char** argv) {
-    
-    // Call the function to print the arguments
-    int result{0};
-    result = print_arguments(argc, argv);
-    if(result != 0) {
-        return result;
-    }
-
-    const int target_value = make_random_value();
 	int current_value{};
 	bool not_win = true;
 	int attempts{};
 	std::string name{};
 	const std::string filename = "Score.txt";
+	int max_value{100};
+
+	// Парсим аргументы
+	if (argc >= 2) {
+		std::string arg1_value{ argv[1] };
+
+		// -max
+		if (arg1_value == "-max") {
+			if (argc < 3) {
+				std::cout << "Wrong usage! The argument '-parameter' requires some value!" << std::endl;
+				return -1;
+			}
+			max_value = std::stoi(argv[2]);
+		} else if(arg1_value == "-table") {
+				std::fstream io_file{filename, std::ios_base::in};
+				if (!io_file.is_open()) {
+					std::cout << "File not found!" << std::endl;
+					return -1;
+				}
+				std::cout << "High scores table: " << std::endl;
+				while(io_file >> name >> attempts) {
+					std::cout << name << " " << attempts << std::endl;
+				}
+				io_file.close();
+				return 0;
+			}
+		else {
+			std::cout << "Unknown argument!" << std::endl;
+			return -1;
+		}
+	}
 	
+	
+	
+	const int target_value = make_random_value(max_value);
 
 	// Game loop
 	std::cout << "Hi! Enter your name, please:" << std::endl;
